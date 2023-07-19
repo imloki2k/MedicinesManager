@@ -2,6 +2,8 @@ package com.example.medicinemanagerdemo.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -22,15 +24,27 @@ public class Product {
     @Column(name = "State")
     private int State;
 
-//    public Product(int productID, String productName, int category, String productUnit, Float price, String description, int state) {
-//        ProductID = productID;
-//        ProductName = productName;
-//        Category = category;
-//        ProductUnit = productUnit;
-//        Price = price;
-//        Description = description;
-//        State = state;
-//    }
+    @Column(name = "ImportDate")
+    private Date ImportDate;
+
+    @Column(name = "ExpireDate")
+    private Date ExpireDate;
+
+    public Date getImportDate() {
+        return ImportDate;
+    }
+
+    public void setImportDate(Date importDate) {
+        ImportDate = importDate;
+    }
+
+    public Date getExpireDate() {
+        return ExpireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        ExpireDate = expireDate;
+    }
 
     public int getProductID() {
         return ProductID;
@@ -87,4 +101,8 @@ public class Product {
     public void setProductID(int productID) {
         ProductID = productID;
     }
+
+    @OneToOne
+    @JoinColumn(name = "CategoryID")
+    private Category category;
 }
